@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="NuevoLegajo" width="892" height="660">
+  <node name="Inicio" x="219" y="87" width="141" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="CreaDirectorio" x="219" y="162" width="143" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="Fin" x="221" y="239" width="138" height="36"/>
+  <deployment graphicalInfoFile="/NuevoLegajo/src/main/jpdl/.NuevoLegajo.gpd.xml" imageFile="/NuevoLegajo/src/main/jpdl/NuevoLegajo.jpg" serverName="doc.contreras.com.ar" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+    <classesAndResources>
+      <element type="java" value="/NuevoLegajo/src/main/java/CreaDirectorio.java"/>
+    </classesAndResources>
+    <additionalFiles>
+      <element value="/NuevoLegajo/src/main/jpdl/forms.xml"/>
+    </additionalFiles>
+  </deployment>
+</root-container>

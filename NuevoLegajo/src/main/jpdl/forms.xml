@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE workflow-forms PUBLIC "-//OpenKM//DTD Workflow Forms 2.4//EN"
+                                "http://www.openkm.com/dtd/workflow-forms-2.4.dtd">
+<workflow-forms>
+  <workflow-form task="run_config">
+    <select name="proyecto" label="Proyecto">
+    	<option label="1000" value="1000" selected="true"/>
+    	<option label="1043" value="1043" selected="true"/>
+		<validator type="req"/>
+    </select>
+    <input label="C.U.I.L." width="100px" type="text" name="cuil">
+     	<validator type="req"/>
+    </input>
+  	<input label="Apellido y Nombre" width="300px" type="text" name="apellidoNombre">
+    	<validator type="req"/>
+    </input>
+  </workflow-form>
+</workflow-forms>
