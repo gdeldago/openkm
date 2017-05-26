@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-05T18:38:55 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Registered Users" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Key">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="240"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="214"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="780"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="host" class="java.lang.String"/>
+	<parameter name="proyecto" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[package com.openkm;
+
+import java.util.HashMap;
+import java.util.Map;
+import org.hibernate.*;
+import java.sql.*;
+import com.openkm.dao.*;
+
+Session hbmSession = HibernateUtil.getSessionFactory().openSession();
+  	Connection con = hbmSession.connection();
+	stmt = con.createStatement();
+
+	String sql = "SELECT DMV_TABLE, DMV_COL00, DMV_COL01, DMV_COL02 FROM OKM_DB_METADATA_VALUE";
+        ResultSet rs = stmt.executeQuery(sql);
+List al = new ArrayList();
+	while (rs.next()) {
+            String cuil = rs.getString("DMV_COL00");
+            String apellidoNombre = rs.getString("DMV_COL02");
+	  Map usr = new HashMap();
+	  usr.put("cuil",cuil);
+	  	  usr.put("apellidoNombre",apellidoNombre);
+	  al.add(usr);
+	}
+	LegacyDAO.close(con);
+  	HibernateUtil.close(hbmSession);
+return al;]]>
+	</queryString>
+	<field name="cuil" class="java.lang.String"/>
+	<field name="apellidoNombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
+				<reportElement key="textField-13" x="0" y="0" width="65" height="10" forecolor="#010101" uuid="80910fc0-117e-4392-8866-f800b2b9feea"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a" isBlankWhenNull="false">
+				<reportElement key="textField-14" x="0" y="10" width="65" height="10" forecolor="#010101" uuid="43ffa830-b443-418c-9379-5f5a1e1ac493"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-3" x="-15" y="42" width="562" height="1" forecolor="#010101" uuid="c7a8f0b4-4d23-4d62-9cfe-b122acb803d3"/>
+				<graphicElement fill="Solid"/>
+			</line>
+			<staticText>
+				<reportElement x="100" y="0" width="297" height="44" uuid="9b2b8836-05a3-4f9a-9b7e-ab02f152a08e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="22" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Registered Users]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement key="line-4" x="0" y="28" width="140" height="1" forecolor="#010101" uuid="a951b655-2b0d-4b3a-9459-197ad79f4c03"/>
+			</line>
+			<line>
+				<reportElement key="line-5" x="145" y="28" width="390" height="1" forecolor="#010101" uuid="84e591f7-a6fc-40f8-b169-766d2c03c957"/>
+			</line>
+			<staticText>
+				<reportElement x="-2" y="0" width="100" height="30" uuid="79687ada-ef6b-4d5e-9c24-6a6e05c993e9"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[cuil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="0" width="100" height="30" uuid="82912b62-9486-4af8-9175-847a08b614a7"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[apellidoNombre]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="-2" y="3" width="100" height="30" uuid="56c3fd4f-f0fa-4f7a-8e2a-e3ec648e9ca3"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="4" width="100" height="30" uuid="8946d796-2c95-4213-8b23-d5267d47a827"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidoNombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement key="line-2" x="-15" y="4" width="567" height="1" forecolor="#010101" backcolor="#FFFFFF" uuid="445f5f30-3782-4295-adc8-d08b7ba49ee4"/>
+				<graphicElement fill="Solid"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

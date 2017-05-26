@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-04-30T15:05:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Subscribed Documents" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="203f433b-d148-4069-952c-b92f14a70f8a">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="353"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="294"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="695"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="host" class="java.lang.String"/>
+	<parameter name="from_date" class="java.util.Date"/>
+	<parameter name="to_date" class="java.util.Date"/>
+	<queryString>
+		<![CDATA[import java.util.Calendar;
+import com.openkm.dao.ActivityDAO;
+import com.openkm.dao.bean.ActivityFilter;
+import com.openkm.dao.bean.Activity;
+
+ActivityFilter filter = new ActivityFilter();
+Calendar begin = Calendar.getInstance();
+begin.setTime(from_date);
+begin.set(Calendar.HOUR, 0);
+begin.set(Calendar.MINUTE, 0);
+begin.set(Calendar.SECOND, 0);
+begin.set(Calendar.MILLISECOND, 0);
+filter.setBegin(begin);
+Calendar end = Calendar.getInstance();
+end.setTime(to_date);
+end.set(Calendar.HOUR, 0);
+end.set(Calendar.MINUTE, 0);
+end.set(Calendar.SECOND, 0);
+end.set(Calendar.MILLISECOND, 0);
+filter.setEnd(end);
+filter.setAction("GET_PROPERTY_GROUP_PROPERTIES");
+List al = new ArrayList();
+for (Iterator it = ActivityDAO.findByFilter(filter).iterator(); it.hasNext();){
+    Activity act = (Activity) it.next();
+    Map actMap = new HashMap();
+    actMap.put("user", act.getUser());
+    actMap.put("path", act.getPath());
+    actMap.put("params", act.getParams());
+    actMap.put("date", act.getDate().getTime());
+    al.add(actMap);
+}
+
+return al]]>
+	</queryString>
+	<field name="user" class="java.lang.String">
+		<fieldDescription><![CDATA[user]]></fieldDescription>
+	</field>
+	<field name="date" class="java.util.Date">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="path" class="java.lang.String"/>
+	<field name="params" class="java.lang.String">
+		<fieldDescription><![CDATA[params]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<image>
+				<reportElement key="image-1" x="631" y="0" width="150" height="35" uuid="7b55c16a-7fe1-4780-9829-0bc1111d7239"/>
+				<imageExpression><![CDATA["http://localhost:8080/OpenKM/logo/report"]]></imageExpression>
+			</image>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
+				<reportElement key="textField-13" x="0" y="0" width="65" height="10" forecolor="#010101" uuid="f526778c-6cdc-4c07-8215-d6a7df607c85"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a" isBlankWhenNull="false">
+				<reportElement key="textField-14" x="0" y="10" width="65" height="10" forecolor="#010101" uuid="04adb5e9-85e1-4bb5-8e4f-a44d45ddfad0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-3" x="1" y="39" width="781" height="1" forecolor="#010101" uuid="00c23e0c-9603-4d6e-b74a-467d33ed3156"/>
+				<graphicElement fill="Solid"/>
+			</line>
+			<staticText>
+				<reportElement x="155" y="0" width="398" height="44" uuid="121bf7e7-83ff-42a9-96d5-2151621eb2b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="22" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Get document property group properties]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<line>
+				<reportElement key="line-5" x="1" y="46" width="780" height="1" forecolor="#010101" uuid="92f05791-f2e0-4aa0-98be-a6e843ac86ca"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="32" width="102" height="14" uuid="8a04f18c-10e6-4761-84a9-b1a21bb980da"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[User]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="32" width="111" height="14" uuid="226f0745-0003-455e-932b-c366c96d97b9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="9" width="41" height="20" uuid="950549bb-a33e-4251-ba8c-f2d6db06f8e0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="9" width="38" height="20" uuid="c05c547d-2c3d-4156-879c-ece18f932a75"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="42" y="9" width="75" height="20" uuid="06cc3b7f-bd11-47bb-bf9e-73e885bec593"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{from_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="156" y="9" width="76" height="20" uuid="4cbe9109-a98e-4f72-92fb-0b212a798e4a"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{to_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="212" y="32" width="59" height="14" uuid="cb962c2e-d7b7-43fa-8719-0d3a28802087"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Path]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField" x="1" y="0" width="102" height="18" uuid="b471430f-f98d-4229-8de9-cc12c1ceff5b"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{user}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="yyyy/MM/dd HH:mm:ss" isBlankWhenNull="false">
+				<reportElement key="textField" x="102" y="0" width="111" height="18" uuid="cae3059c-d202-4817-afd5-7bb909014e34"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField" x="213" y="0" width="568" height="18" uuid="07e24ae6-655e-4a74-949d-7f8c2c43a7fd"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{path}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField" x="307" y="18" width="474" height="18" uuid="85318b46-8023-4594-9dc8-42f383328792"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{params}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="213" y="18" width="94" height="18" uuid="0fa65c6e-20b3-477e-be98-ca20c7f16cf7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Properties info]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement key="line-2" x="1" y="4" width="780" height="1" forecolor="#010101" backcolor="#FFFFFF" uuid="e93abd28-3be5-4812-823e-77b1a0aa026d"/>
+				<graphicElement fill="Solid"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="NuevoSubcontratista" width="921" height="660">
+  <node name="Inicio" x="185" y="57" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="CreaDirectorio" x="186" y="134" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="Fin" x="186" y="216" width="132" height="36"/>
+  <deployment graphicalInfoFile="/NuevoSubcontratista/src/main/jpdl/.NuevoSubcontratista.gpd.xml" imageFile="/NuevoSubcontratista/src/main/jpdl/NuevoSubcontratista.jpg" serverName="doc.contreras.com.ar" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+    <classesAndResources>
+      <element type="java" value="/NuevoSubcontratista/src/main/java/CreaDirectorio.java"/>
+    </classesAndResources>
+    <additionalFiles>
+      <element value="/NuevoSubcontratista/src/main/jpdl/forms.xml"/>
+    </additionalFiles>
+  </deployment>
+</root-container>

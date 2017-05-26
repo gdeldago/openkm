@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns="urn:jbpm.org:jpdl-3.2"  name="NuevoSubcontratista">
+
+
+	<start-state name="Inicio">
+		<transition to="CreaDirectorio"></transition>
+	</start-state>
+
+
+	<node name="CreaDirectorio">
+		<action class="CreaDirectorio"></action>
+		<transition to="Fin"></transition>
+	</node>
+
+
+	<end-state name="Fin"></end-state>
+
+
+</process-definition>

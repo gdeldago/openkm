@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE report-parameters PUBLIC "-//OpenKM//DTD Report Parameters 2.0//EN"
+                                   "http://www.openkm.com/dtd/report-parameters-2.0.dtd">
+<report-parameters>
+    <select name="proyecto" label="Proyecto">
+    	<option label="1000" value="1000" selected="true"/>
+    	<option label="1043" value="1043"/>
+    </select>
+</report-parameters>

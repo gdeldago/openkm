@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE report-parameters PUBLIC "-//OpenKM//DTD Report Parameters 2.0//EN"
+                                   "http://www.openkm.com/dtd/report-parameters-2.0.dtd">
+<report-parameters>
+  <input label="Path" name="baseFolder" type="folder"/>
+</report-parameters>
+

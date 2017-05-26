@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-01T15:21:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Registered Users" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="91f0f4df-2d9f-431f-9d1c-e9fc23599604">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OpenKM local"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="344"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="645"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="host" class="java.lang.String"/>
+	<parameter name="path" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT NBS_UUID,NBS_NAME,NPG_NODE, NPG_NAME, NPG_VALUE FROM OKM_NODE_BASE, OKM_NODE_PROPERTY WHERE NBS_UUID = NPG_NODE AND (NBS_PARENT ='424b20c2-39e8-4886-8f93-05b1550b0469' OR NBS_PARENT ='20e97bef-f56c-427b-9ce8-60e52dfeb7a2')]]>
+	</queryString>
+	<field name="NBS_NAME" class="java.lang.String"/>
+	<field name="NPG_NAME" class="java.lang.String"/>
+	<field name="NPG_VALUE" class="java.lang.String"/>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{NBS_NAME}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<textField isBlankWhenNull="false">
+					<reportElement key="textField" x="0" y="10" width="127" height="18" uuid="99057a3d-c90e-4038-93e0-e955d52d57ce"/>
+					<textElement>
+						<font fontName="DejaVu Sans"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NBS_NAME}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="false">
+				<reportElement key="textField-13" x="0" y="0" width="65" height="10" forecolor="#010101" uuid="fa130ee9-18f1-4567-b845-da9fae52b070"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a" isBlankWhenNull="false">
+				<reportElement key="textField-14" x="0" y="10" width="65" height="10" forecolor="#010101" uuid="c64672f1-ae8b-4b16-ae34-15ec3e625240"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-3" x="-13" y="80" width="562" height="1" forecolor="#010101" uuid="1acff163-82b6-4af6-8f9d-36e83f6f36aa"/>
+				<graphicElement fill="Solid"/>
+			</line>
+			<staticText>
+				<reportElement x="120" y="0" width="297" height="32" uuid="62451f19-f966-41d1-9a8d-c15612955198"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="22" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Capacitaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="38" width="535" height="20" uuid="95e99b79-4e7a-40f9-aae0-b7620b694a68"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{path}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement key="line-4" x="0" y="28" width="140" height="1" forecolor="#010101" uuid="949c1383-df82-4364-88f6-a20a76dcb3c8"/>
+			</line>
+			<line>
+				<reportElement key="line-5" x="145" y="28" width="390" height="1" forecolor="#010101" uuid="e4186ea1-e646-4030-a7d5-14c6f997d9f5"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="12" width="127" height="14" uuid="c41632e1-ed89-4875-b6d9-7ce1e061ae18"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Archivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="12" width="100" height="14" uuid="417bebd8-7139-4933-8590-cafcdc4d6054"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Propiedad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="11" width="100" height="14" uuid="a944351f-d151-4b41-9dcc-448b35e95401"/>
+				<textElement>
+					<font fontName="DejaVu Sans" isBold="true" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="130" y="-2" width="162" height="18" uuid="f528d805-0e39-4094-bf17-3b966dcd9ba4"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NPG_NAME}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="300" y="-2" width="206" height="18" uuid="55128b65-f15c-485d-96b2-b2f3b51babcf"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NPG_VALUE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement key="line-2" x="-15" y="4" width="567" height="1" forecolor="#010101" backcolor="#FFFFFF" uuid="37d90e00-20b8-4d3b-a36f-6043ecea869c"/>
+				<graphicElement fill="Solid"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
